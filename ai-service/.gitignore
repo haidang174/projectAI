@@ -1,0 +1,27 @@
+# Model weights — quá nặng, không push
+ai-service/models/
+ai-service/models/phobert_sentiment
+
+*.pt
+*.safetensors
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+
+# Processed data — tự generate được, không cần push
+ai-service/dataset/processed/
+
+# Colab checkpoint
+*.ipynb_checkpoints/
+
+# Environment
+.env
+*.env
+
+# Editor
+.vscode/
+.idea/

@@ -1,0 +1,7 @@
+const express = require("express");
+const { analyze } = require("../controllers/sentimentController");
+const router = express.Router();
+
+router.post("/analyze", analyze);
+
+module.exports = router;
