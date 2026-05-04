@@ -27,11 +27,11 @@ Hệ thống phân tích cảm xúc tiếng Việt cho review sản phẩm, sử
 
 Dự án xây dựng hệ thống phân tích cảm xúc tiếng Việt với 3 nhãn:
 
-| Nhãn | Ý nghĩa | Ví dụ |
-|---|---|---|
-| 😊 Tích cực | Review hài lòng | "Sản phẩm tuyệt vời, giao hàng nhanh!" |
-| 😐 Trung tính | Review bình thường | "Sản phẩm tạm được, không có gì đặc biệt" |
-| 😞 Tiêu cực | Review không hài lòng | "Hàng kém chất lượng, không như quảng cáo" |
+| Nhãn          | Ý nghĩa               | Ví dụ                                      |
+| ------------- | --------------------- | ------------------------------------------ |
+| 😊 Tích cực   | Review hài lòng       | "Sản phẩm tuyệt vời, giao hàng nhanh!"     |
+| 😐 Trung tính | Review bình thường    | "Sản phẩm tạm được, không có gì đặc biệt"  |
+| 😞 Tiêu cực   | Review không hài lòng | "Hàng kém chất lượng, không như quảng cáo" |
 
 **Dataset:** 19.705 review sản phẩm tiếng Việt (Shopee/Tiki)  
 **Model:** [vinai/phobert-base-v2](https://huggingface.co/vinai/phobert-base-v2)  
@@ -122,11 +122,11 @@ sentiment-analysis-phobert/
 
 ## ⚙️ Yêu cầu cài đặt
 
-| Công cụ | Phiên bản | Kiểm tra |
-|---|---|---|
-| Python | >= 3.9 | `python --version` |
-| Node.js | >= 18 | `node --version` |
-| Git | Mới nhất | `git --version` |
+| Công cụ | Phiên bản | Kiểm tra           |
+| ------- | --------- | ------------------ |
+| Python  | >= 3.9    | `python --version` |
+| Node.js | >= 18     | `node --version`   |
+| Git     | Mới nhất  | `git --version`    |
 
 ---
 
@@ -177,6 +177,7 @@ npm install
 ```
 
 Kiểm tra file `.env`:
+
 ```env
 PORT=3000
 AI_SERVICE_URL=http://localhost:8000
@@ -191,16 +192,12 @@ npm install
 
 ### Bước 6 — Chạy dự án
 
-**Cách 1 — Tự động (khuyến nghị):**
-
-Double-click file `start.bat` ở thư mục gốc — tự động mở 3 terminal.
-
-**Cách 2 — Thủ công** (mở 3 terminal riêng):
+**Mở 3 terminal riêng**:
 
 ```bash
 # Terminal 1 — AI Service
 cd ai-service
-venv\Scripts\activate
+source venv/Scripts/activate
 cd api
 uvicorn app:app --port 8000
 
@@ -215,26 +212,27 @@ npm run dev
 
 ### Bước 7 — Kiểm tra
 
-| Service | URL | Kết quả |
-|---|---|---|
-| AI Service | http://localhost:8000/health | `{"status":"ok"}` |
-| AI Service Docs | http://localhost:8000/docs | Swagger UI |
-| Backend | http://localhost:3000/health | `{"status":"ok"}` |
-| Frontend | http://localhost:5173 | Giao diện web |
+| Service         | URL                          | Kết quả           |
+| --------------- | ---------------------------- | ----------------- |
+| AI Service      | http://localhost:8000/health | `{"status":"ok"}` |
+| AI Service Docs | http://localhost:8000/docs   | Swagger UI        |
+| Backend         | http://localhost:3000/health | `{"status":"ok"}` |
+| Frontend        | http://localhost:5173        | Giao diện web     |
 
 ---
 
 ## 📊 Kết quả mô hình
 
-| Nhãn | Precision | Recall | F1-score |
-|---|---|---|---|
-| Tiêu cực (NEG) | 0.84 | 0.78 | 0.81 |
-| Trung tính (NEU) | 0.67 | 0.70 | 0.68 |
-| Tích cực (POS) | 0.82 | 0.83 | 0.82 |
-| **Accuracy** | | | **0.77** |
-| **Macro avg** | **0.77** | **0.77** | **0.77** |
+| Nhãn             | Precision | Recall   | F1-score |
+| ---------------- | --------- | -------- | -------- |
+| Tiêu cực (NEG)   | 0.84      | 0.78     | 0.81     |
+| Trung tính (NEU) | 0.67      | 0.70     | 0.68     |
+| Tích cực (POS)   | 0.82      | 0.83     | 0.82     |
+| **Accuracy**     |           |          | **0.77** |
+| **Macro avg**    | **0.77**  | **0.77** | **0.77** |
 
 **Thông tin training:**
+
 - Dataset: 16.500 mẫu (sau cân bằng)
 - Train/Val split: 85% / 15%
 - Epochs: 4
@@ -249,13 +247,15 @@ npm run dev
 ### AI Service (Port 8000)
 
 **GET** `/health`
+
 ```json
-{"status": "ok"}
+{ "status": "ok" }
 ```
 
 **POST** `/predict`
 
 Request:
+
 ```json
 {
   "text": "Sản phẩm tuyệt vời, giao hàng nhanh!"
@@ -263,6 +263,7 @@ Request:
 ```
 
 Response:
+
 ```json
 {
   "input": "Sản phẩm tuyệt vời, giao hàng nhanh!",
@@ -288,12 +289,14 @@ Request/Response: tương tự AI Service `/predict`
 ## 🔧 Lỗi thường gặp
 
 **`FileNotFoundError: model not found`**
+
 ```bash
 # Kiểm tra model đã đặt đúng thư mục chưa
 ls ai-service/models/phobert_sentiment/
 ```
 
 **`Cannot connect to AI Service`**
+
 ```bash
 # Kiểm tra AI Service đang chạy
 curl http://localhost:8000/health
@@ -303,12 +306,14 @@ cat backend/.env
 ```
 
 **`CORS Error` trên Frontend**
+
 ```bash
 # Kiểm tra allow_origins trong ai-service/api/app.py
 # và backend/src/app.js có chứa http://localhost:5173
 ```
 
 **`venv\Scripts\activate` không chạy được**
+
 ```bash
 # Chạy lệnh này trong PowerShell với quyền Admin
 Set-ExecutionPolicy RemoteSigned
@@ -318,13 +323,13 @@ Set-ExecutionPolicy RemoteSigned
 
 ## 🛠️ Tech Stack
 
-| Layer | Công nghệ |
-|---|---|
-| Frontend | React 18, Vite, Axios |
-| Backend | Node.js, Express, Axios |
-| AI Service | Python, FastAPI, Uvicorn |
-| Model | PhoBERT-base-v2, HuggingFace Transformers |
-| Training | Google Colab T4 GPU |
+| Layer      | Công nghệ                                 |
+| ---------- | ----------------------------------------- |
+| Frontend   | React 18, Vite, Axios                     |
+| Backend    | Node.js, Express, Axios                   |
+| AI Service | Python, FastAPI, Uvicorn                  |
+| Model      | PhoBERT-base-v2, HuggingFace Transformers |
+| Training   | Google Colab T4 GPU                       |
 
 ---
 
