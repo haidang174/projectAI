@@ -1,4 +1,3 @@
-const EMOJI = { positive: "😊", neutral: "😐", negative: "😞" };
 const COLOR = { positive: "#22c55e", neutral: "#f59e0b", negative: "#ef4444" };
 
 export default function ResultBox({ result }) {
@@ -7,9 +6,7 @@ export default function ResultBox({ result }) {
 
   return (
     <div className="result-box" style={{ borderColor: COLOR[label] }}>
-      <h2>
-        {EMOJI[label]} {label_vi}
-      </h2>
+      <h2>{label_vi}</h2>
       <p>
         Độ tin cậy: <strong>{(confidence * 100).toFixed(1)}%</strong>
       </p>

@@ -23,7 +23,7 @@ export default function Home() {
 
   return (
     <main className="container">
-      <h1>🇻🇳 Phân tích cảm xúc tiếng Việt</h1>
+      <h1>Phân tích cảm xúc tiếng Việt</h1>
       <p className="subtitle">Powered by PhoBERT</p>
       <InputBox onAnalyze={handleAnalyze} loading={loading} />
       {error && <p className="error">{error}</p>}
